@@ -52,7 +52,7 @@ Theoretical variance of the distribution $Var(X) = \frac{1}{n \lambda^2}$ is `r 
 
 A quantile-quantile plot is a straight way to show if a distribution is approximately normal
 
-```{r density.and.normal,fig.width=4,fig.height=4}
+```{r density-and-normal,fig.width=4,fig.height=4}
 z.sims <- (simulations-mean(simulations))/sd(simulations)
 qqnorm(z.sims)
 abline(a=0,b=1,lwd=2,col="red")
