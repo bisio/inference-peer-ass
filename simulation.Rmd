@@ -33,7 +33,6 @@ Theoretical mean of the distribution  $\mu = \frac{1}{\lambda}$ is `r theor_mean
 ggplot(aes(x=x),data=sims) + geom_density() +
         geom_vline(xintercept=theor_mean,color="red") + 
         geom_vline(xintercept=actual_mean,color="black") 
-        #stat_function(fun=dnorm,args=list(mean=theor_mean,sd=sqrt(theor_variance)),color="green")
 ```
 
 
@@ -56,8 +55,6 @@ A quantile-quantile plot is a straight way to show if a distribution is approxim
 z.sims <- (simulations-mean(simulations))/sd(simulations)
 qqnorm(z.sims)
 abline(a=0,b=1,lwd=2,col="red")
-#ggplot(aes(x=x),data=sims) + geom_density(color="black") +
-#stat_function(fun=dnorm,args=list(mean=theor_mean,sd=sqrt(theor_variance)),color="red") 
 ```
 
 
