@@ -2,7 +2,7 @@
 title: "Statistical Inference Project (Simulation)"
 author: "Andrea Bisognin"
 date: "18/10/2014"
-output: html_document
+output: pdf_document
 ---
 
 ```{r generate-data}
