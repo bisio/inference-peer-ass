@@ -11,11 +11,14 @@ set.seed(42)
 n <- 40 
 lambda <- 0.2
 nsim <- 1000
-simulations <- sapply(seq_len(nsim),function(x){
+simulations.data <- sapply(seq_len(nsim),function(x){
         data <- rexp(n,lambda)
-        mean(data)
+        data
 })
 
+simulations.data <- t(simulations.data)
+simulations <- rowMeans(simulations.data)
+standard.devs <- apply(simulations.data,1,sd)
 sims <- data.frame(x=simulations)
 ```
 
@@ -60,4 +63,13 @@ abline(a=0,b=1,lwd=2,col="red")
 
 
 ## Evaluate the coverage of the confidence interval for $\frac{1}{\lambda}: \bar{X} \pm 1.96 \frac{s}{\sqrt{n}}$  
+
+```{r coverage}
+ll <- simulations - qnorm(.975) * standard.devs/sqrt(n)
+ul <- simulations + qnorm(.975) * standard.devs/sqrt(n)
+coverage <- mean(ll < 1/lambda & ul > 1/lambda)
+```
+
+Actual coverage is `r coverage` while the theoretical one is .95
+
 
