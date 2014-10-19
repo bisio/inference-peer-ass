@@ -1,0 +1,53 @@
+---
+title: "Statistical Inference Project (Simulation)"
+author: "Andrea Bisognin"
+date: "18/10/2014"
+output: pdf_document
+---
+
+```{r generate-data}
+suppressPackageStartupMessages(library(ggplot2))
+set.seed(42)
+n <- 40 
+lambda <- 0.2
+nsim <- 1000
+simulations <- sapply(seq_len(nsim),function(x){
+        data <- rexp(n,lambda)
+        mean(data)
+})
+
+sims <- data.frame(x=simulations)
+```
+
+## Show where the distribution is centered and compare it to the theoretical centre center of the distribution 
+
+```{r}
+theor_mean = 1/lambda
+actual_mean= mean(simulations)
+```
+
+
+Theoretical mean of the distribution  $\mu = \frac{1}{\lambda}$ is `r theor_mean` while actual simulated mean is `r actual_mean`.
+
+```{r density,fig.height=3,fig.width=7}
+ggplot(aes(x=x),data=sims) + geom_density() +
+        geom_vline(xintercept=theor_mean,color="red") + 
+        geom_vline(xintercept=actual_mean,color="black")
+```
+
+
+
+## Show how variable it is and compare it to the theoretical variance of the distribution.
+
+```{r}
+theor_variance = 1/(lambda^2*n)
+actual_variance = var(simulations)
+```
+
+
+Theoretical variance of the distribution $Var(X) = \frac{1}{n \lambda^2}$ is `r theor_variance` while actual simulated variance is `r actual_variance`.
+
+## Show that the distribution is approximately normal
+
+## Evaluate the coverage of the confidence interval for $\frac{1}{\lambda}: \bar{X} \pm 1.96 \frac{s}{\sqrt{n}}$  
+
