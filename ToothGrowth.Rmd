@@ -7,7 +7,7 @@ output: pdf_document
 
 # Load and perform some basic exploratory data analyses
 
-```{r load-data}
+```{r load-data,fig.height=3,fig.width=4}
 data(ToothGrowth)
 library(lattice)
 bwplot(len ~ I(factor(dose)) | supp, data=ToothGrowth)
