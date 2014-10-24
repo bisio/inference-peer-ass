@@ -25,7 +25,8 @@ ddply(ToothGrowth,.(supp,dose), summarize, mean=mean(len),sd=sd(len),n.obs=lengt
 
 ## Assumptions
 
-I'm assuming tooth length is approximately normal. Quantile-quantile plot is in agreement with this hypotheses
+I'm assuming tooth length is approximately normal. Quantile-quantile plot is in agreement with this hypotheses.
+To be cautious i don't assume common variance.
 
 ```{r assumptions,fig.width=4,fig.height=4}
 qqnorm(  with( ToothGrowth, (len - mean(len))/sd(len) )  )
