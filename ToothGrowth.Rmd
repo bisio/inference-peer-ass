@@ -23,6 +23,16 @@ ddply(ToothGrowth,.(supp,dose), summarize, mean=mean(len),sd=sd(len),n.obs=lengt
 
 # Use confidence intervals and hypothesis tests to compare tooth growth by supp and dose.
 
+## Assumptions
+
+I'm assuming tooth length is approximately normal. Quantile-quantile plot is in agreement with this hypotheses
+
+```{r assumptions,fig.width=4,fig.height=4}
+qqnorm(  with( ToothGrowth, (len - mean(len))/sd(len) )  )
+abline(a=0,b=1,lw=3,col="red")
+```
+
+
 ```{r ci-tests}
 
 
