@@ -57,4 +57,13 @@ stat <- delta/(pooled.sd*sqrt(1/n.x + 1/n.y))
 pt(stat,df=n.x+n.y-2)/2
 ```
 
+### Question 6
+```{r}
+n = 9
+alpha = 0.05
+ll <- 1077
+ul <- 1123
+mu <- 1078
+```
 
+No i would not reject $H_0$ since $\mu_0$ is in the 90% confidence interval.
