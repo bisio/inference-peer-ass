@@ -1,0 +1,60 @@
+---
+title: "Quiz 4"
+author: "Andrea Bisognin"
+date: "10/27/2014"
+output: pdf_document
+---
+
+
+### Question 1
+
+```{r}
+baseline <- c(140,138,150,148,135)
+week2    <- c(132,135,151,146,130)
+
+t.test(week2,baseline,paired=T)
+```
+
+### Question 2
+
+$$ \bar{x}  \pm t_{.975,n-1} \frac{s}{\sqrt{n}} $$
+
+```{r}
+n <- 9
+x <- 1100
+s <- 30
+x + c(-1,1) * qt(.975,n-1) * s/sqrt(n)
+```
+
+### Question 3
+
+```{r}
+pbinom(2,4,0.5,lower.tail=F)
+```
+
+### Question 4
+```{r}
+lambda_0 = 1/100
+lambda = round(lambda_0 * 1787)
+ppois(10,lambda,lower.tail=T)
+```
+
+### Question 5
+
+$$  t = \frac{\bar{X_{1}} - \bar{X_{2}} } {s_{x_1x_2} \sqrt{ \frac{1}{n_1} + \frac{1}{n_2} }} $$
+
+$$ s_{x_1 x_2} = \sqrt{ \frac{ (n_1 - 1) s^2_{x_1} + (n_2 - 1) s^2_{x_2} }{n_1 + n_2 - 2}} $$
+```{r}
+n.x <- 9
+n.y <- 9
+treat.mean <- -3
+placebo.mean <- 1
+treat.sd <- 1.5
+placebo.sd <- 1.8
+delta <- treat.mean - placebo.mean
+pooled.sd <- sqrt(((n.x -1) * treat.sd^2 + (n.y-1) * placebo.sd^2) /(n.x + n.y - 2))
+stat <- delta/(pooled.sd*sqrt(1/n.x + 1/n.y))
+pt(stat,df=n.x+n.y-2)/2
+```
+
+
